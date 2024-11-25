@@ -1,6 +1,6 @@
 // 图片懒加载自定义
 const lazyBinding = (el: any, binding: any) => {
-    const placehold = "/loading.gif";
+    const placehold = "./loading.gif";
 
     const {nolazy} = binding.value;
 
