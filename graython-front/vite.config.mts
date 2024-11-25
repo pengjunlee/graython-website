@@ -80,7 +80,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: isSpring() ? '../graython-back/gray-website-adapter/src/main/resources/www' : 'dist',    // 警告大小, 单位kb
+    outDir: isSpring() ? '../graython-back/gray-website-adapter/src/main/resources/static/website' : 'dist',    // 警告大小, 单位kb
     // chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
