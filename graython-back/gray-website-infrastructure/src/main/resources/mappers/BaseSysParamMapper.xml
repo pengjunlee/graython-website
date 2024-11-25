@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gray.website.infrastructure.mapper.BaseSysParamMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="gray.website.common.entity.BaseSysParam">
+        <id column="id" property="id" />
+        <result column="param_name" property="paramName" />
+        <result column="param_value" property="paramValue" />
+        <result column="param_desc" property="paramDesc" />
+        <result column="open_state" property="openState" />
+        <result column="cre_time" property="creTime" />
+        <result column="upd_time" property="updTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, param_name, param_value, param_desc, open_state, cre_time, upd_time
+    </sql>
+    <select id="findByParamName" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from base_sys_param
+        where param_name = #{paramName} and open_state = 1
+    </select>
+
+</mapper>

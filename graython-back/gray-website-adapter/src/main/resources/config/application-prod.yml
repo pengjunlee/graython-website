@@ -1,0 +1,32 @@
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ profile配置 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+website:
+  resource:
+    # 要管理的资源根目录
+    root: /mnt/green/media/
+  aspose:
+    # Aspose 文档转换密钥配置
+    app-id:
+    app-secret:
+  blossom:
+    service: http://192.168.192.66:9999
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ bingo 框架配置 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+bingo:
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ helper ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  helper:
+    enables: caffeine,dynamic_db
+  log-sql: true
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ dynamic datasource ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  db:
+    default:
+      name: website
+    website:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://192.168.192.66:3306/website?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&allowMultiQueries=true&useSSL=false&&serverTimezone=GMT%2B8
+      username: root
+      password: 'Root@123456'
+      slowInterval: '1'
+    blossom:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://192.168.192.66:3306/blossom?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&allowMultiQueries=true&useSSL=false&&serverTimezone=GMT%2B8
+      username: root
+      password: 'Root@123456'

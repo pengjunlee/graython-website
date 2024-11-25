@@ -1,0 +1,113 @@
+/* * {
+  font-family: 'ubuntu mono', 'Consolas', 'Monaco', 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  box-sizing: border-box;
+} */
+html {
+  font-size: 62.5%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#app {
+  width: 100%;
+  height: auto;
+  overflow: auto;
+}
+
+/** ================================== 滚动条 ================================== */
+/* 定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸 */
+::-webkit-scrollbar {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* 滚动条的轨道 */
+::-webkit-scrollbar-track {
+  background: var(--gw-bg-basic); /* 轨道背景色 */
+  border-radius: 5px;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  background: var(--gw-bg-active); /* 滑块颜色 */
+  border-radius: 5px;
+}
+
+/* 滑块悬停效果 */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gw-bg-font); /* 悬停时滑块颜色 */
+}
+
+/** ================================== 博客 ================================== */
+
+.module-workbench {
+  @include box(35px, 35px);
+  @include flex(row, center, center);
+  background-color: var(--gw-bg-basic);
+  box-shadow: -1px 0px 3px #bababa;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  position: absolute;
+  right: 0;
+  bottom: 20px;
+  transition: background-color 0.4s;
+  cursor: pointer;
+
+  .iconbl {
+    color: #7b7b7ba9;
+    font-size: 16px;
+    transition: color 1s;
+  }
+
+  i {
+    transition: color 1s;
+  }
+
+  &:hover {
+    background-color: #606060;
+
+    .iconbl {
+      color: var(--gw-bg-basic);
+    }
+
+    i {
+      --color: var(--gw-bg-basic) !important;
+    }
+  }
+}
+
+/** ================================== 工具栏 ================================== */
+.toolbox_div .iconfont {
+  color: var(--gw-icon-color);
+  opacity: 0.5;
+  font-size: 3rem;
+  &:hover {
+    opacity: 1;
+  }
+  &.active {
+    color: var(--gw-icon-active-color);
+  }
+}
+
+/** ================================== 动画 ================================== */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

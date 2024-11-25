@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.pengjunlee.website</groupId>
+    <artifactId>gray-website-back</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <name>gray-website</name>
+
+    <modules>
+        <module>gray-website-adapter</module>
+        <module>gray-website-api</module>
+        <module>gray-website-api-impl</module>
+        <module>gray-website-common</module>
+        <module>gray-website-infrastructure</module>
+    </modules>
+
+    <properties>
+        <website.version>1.0-SNAPSHOT</website.version>
+        <bingo.version>1.4</bingo.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+        </dependency>
+    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.gitee.pengjunlee</groupId>
+                <artifactId>gray-bingo-starter</artifactId>
+                <version>${bingo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.gitee.pengjunlee</groupId>
+                <artifactId>gray-bingo-mybatis</artifactId>
+                <version>${bingo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.gitee.pengjunlee</groupId>
+                <artifactId>gray-bingo-cache</artifactId>
+                <version>${bingo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.gitee.pengjunlee</groupId>
+                <artifactId>gray-bingo-tools</artifactId>
+                <version>${bingo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.gitee.pengjunlee</groupId>
+                <artifactId>gray-bingo-tracker</artifactId>
+                <version>${bingo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.gitee.pengjunlee</groupId>
+                <artifactId>gray-bingo-common</artifactId>
+                <version>${bingo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.pengjunlee.website</groupId>
+                <artifactId>gray-website-infrastructure</artifactId>
+                <version>${website.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.pengjunlee.website</groupId>
+                <artifactId>gray-website-common</artifactId>
+                <version>${website.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.pengjunlee.website</groupId>
+                <artifactId>gray-website-api</artifactId>
+                <version>${website.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.pengjunlee.website</groupId>
+                <artifactId>gray-website-adapter</artifactId>
+                <version>${website.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.pengjunlee.website</groupId>
+                <artifactId>gray-website-api-impl</artifactId>
+                <version>${website.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 镜像仓库 -->
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+        <repository>
+            <id>aliyun</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>aliyun-plugin</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+</project>

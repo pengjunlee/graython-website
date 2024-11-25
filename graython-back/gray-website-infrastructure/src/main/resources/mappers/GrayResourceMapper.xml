@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gray.website.infrastructure.mapper.GrayResourceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="gray.website.common.entity.GrayResource">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="folder_id" property="folderId"/>
+        <result column="name" property="name"/>
+        <result column="md5" property="md5"/>
+        <result column="ext" property="ext"/>
+        <result column="size" property="size"/>
+        <result column="duration" property="duration"/>
+        <result column="mime_type" property="mimeType"/>
+        <result column="resource_type" property="resourceType"/>
+        <result column="classification" property="classification"/>
+        <result column="thumbnail" property="thumbnail"/>
+        <result column="thumbnail_width" property="thumbnailWidth"/>
+        <result column="thumbnail_height" property="thumbnailHeight"/>
+        <result column="width" property="width"/>
+        <result column="height" property="height"/>
+        <result column="page_count" property="pageCount"/>
+        <result column="title" property="title"/>
+        <result column="artist" property="artist"/>
+        <result column="album" property="album"/>
+        <result column="last_modified" property="lastModified"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="folder_name" property="folderName"/>
+        <result column="folder_path" property="folderPath"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id, folder_id, name, md5, ext, size, duration, mime_type, resource_type, classification, thumbnail,
+        thumbnail_width, thumbnail_height, width, height, page_count, title, artist, album, last_modified, create_time,
+        update_time
+    </sql>
+    <select id="listResources" resultMap="BaseResultMap">
+        select r.id,r.user_id, r.folder_id, r.name, r.md5, r.ext, r.size, r.mime_type, r.resource_type, r.thumbnail,
+        r.last_modified, r.create_time, r.update_time,
+        f.path as folder_path
+        from gray_resource r left join gray_folder f on r.folder_id = f.id
+    </select>
+    <select id="random" resultMap="BaseResultMap">
+        select r.id,r.user_id, r.folder_id, r.name, r.md5, r.ext, r.size, r.mime_type, r.resource_type, r.thumbnail,
+        r.last_modified, r.create_time, r.update_time, r.title, r.artist, r.album,
+        f.path as folder_path
+        from gray_resource r left join gray_folder f on r.folder_id = f.id
+        where r.folder_id = #{folderId}
+        order by RAND() LIMIT 1
+    </select>
+
+</mapper>

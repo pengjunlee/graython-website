@@ -1,0 +1,57 @@
+server:
+  port: 8081
+  compression:
+    enabled: true
+    # 响应内容长度(Content-Length)进行压缩, 默认值为 2048 (2KB,不带单位时默认为字节)
+    min-response-size: 10KB
+    # 对指定的响应类型进行压缩, 逗号隔开
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json,application/xml
+  servlet:
+    context-path: /website-api/
+  connection-timeout:  20000           # 客户端连接超时时间（以毫秒为单位）
+  tomcat:
+    threads:
+      max:  50         #池中最大线程数
+      min-spare:  10    #最小空闲线程数
+    max-connections:  1000      # 可处理的最大连接数
+    accept-count:  100          # 传入连接请求的最大队列长度
+    keep-alive-timeout:  10000         # 保持连接超时时间（以毫秒为单位）
+    max-keep-alive-requests:  100      # 可通过保持连接发送的最大请求
+    accesslog:
+      enabled: true
+      directory: ./logs
+      prefix: access_log
+      suffix: .txt
+spring:
+  main:
+    allow-circular-references: true
+  application:
+    name: gray-website
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  mvc:
+    format:
+      # mvc 接收参数时对日期进行格式化
+      date-time: yyyy-MM-dd HH:mm:ss
+      date: yyyy-MM-dd
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false
+  sql:
+    init:
+      mode: always
+      platform: mysql
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jms.JmsAutoConfiguration
+mybatis-plus:
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: gray.website.common.entity
+  type-enums-package: gray.website.common.enums

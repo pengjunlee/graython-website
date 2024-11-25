@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gray.website.infrastructure.mapper.GrayLibraryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="gray.website.common.entity.GrayLibrary">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="folder_id" property="folderId" />
+        <result column="collection_id" property="collectionId" />
+        <result column="name" property="name" />
+        <result column="cover" property="cover" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="folder_name" property="folderName" />
+        <result column="folder_path" property="folderPath" />
+        <result column="collection_name" property="collectionName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, folder_id, collection_id,user_id, name, cover, create_time, update_time
+    </sql>
+
+    <select id="listLibraries" resultMap="BaseResultMap">
+        select l.id, l.folder_id,l.user_id, l.name, l.cover, l.create_time, l.update_time, l.collection_id,
+        f.name as folder_name, f.path as folder_path, c.name as collection_name
+        from gray_library l left join gray_folder f on l.folder_id = f.id
+        left join gray_collection c on l.collection_id = c.id
+        where l.user_id = #{userId}
+        <if test="collectionId > 0">
+            and l.collection_id = #{collectionId}
+        </if>
+    </select>
+</mapper>

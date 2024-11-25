@@ -1,0 +1,46 @@
+.popper-dark {
+  --el-popover-bg-color: var(--gw-bg-basic);
+  --el-popover-padding: 10px 0;
+  --el-popover-border-color: none;
+  --el-box-shadow-light: 5px 5px 10px 0px var(--gw-bg-font);
+  width: auto !important;
+}
+
+.el-popper.el-picker__popper {
+  // 日期范围选择
+  .el-date-picker {
+    .el-picker-panel__content {
+      .current {
+        .el-date-table-cell__text {
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+
+  // 日期范围选择
+  .el-date-range-picker {
+    width: 560px;
+    .el-date-range-picker__content {
+      padding: 5px;
+      .start-date,
+      .end-date {
+        .el-date-table-cell__text {
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+}
+
+.el-popper.el-select__popper {
+  .el-select-dropdown {
+    .el-select-dropdown__list {
+      padding: 3px 0;
+      .el-select-dropdown__item {
+        height: 25px;
+        line-height: 25px;
+      }
+    }
+  }
+}
