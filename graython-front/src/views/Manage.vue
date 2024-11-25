@@ -10,7 +10,7 @@
 </script>
 <style scoped lang="scss">
 .flex-container {
-  @include box(100%, 100%);
+  @include box(100%, 100vh);
   display: flex;
   flex-direction: column;
   justify-content: center;
