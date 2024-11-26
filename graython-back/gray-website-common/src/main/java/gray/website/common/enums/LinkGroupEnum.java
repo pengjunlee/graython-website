@@ -18,8 +18,7 @@ public enum LinkGroupEnum implements BaseIntEnum {
     RESOURCE_DOWNLOAD(3, "资源下载"),
     MACBOOK(4, "MacBook"),
     MEDIA_ENTERTAINMENT(5, "影音娱乐"),
-    CODE_DESIGN(6, "编程设计"),
-
+    CODE_DESIGN(6, "编程设计")
     ;
 
     @EnumValue

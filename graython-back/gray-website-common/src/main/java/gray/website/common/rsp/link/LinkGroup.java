@@ -11,5 +11,7 @@ import java.util.List;
 public class LinkGroup {
     private String name;
 
+    private Integer order;
+
     private List<GrayLink> links;
 }

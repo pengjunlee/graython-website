@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -61,14 +62,22 @@ public class LinkServiceImpl implements LinkService {
     @Override
     public List<LinkGroup> groupLink() {
         List<GrayLink> grayLinks = linkRepo.listByUser(AuthContext.getUserId());
-        return grayLinks.stream().collect(Collectors.groupingBy(GrayLink::getGroupType))
+        List<LinkGroup> groupList = grayLinks.stream().collect(Collectors.groupingBy(GrayLink::getGroupType))
                 .entrySet()
                 .stream()
-                .map(entry -> new LinkGroup(entry.getKey().getName(), entry.getValue()))
+                .map(entry -> new LinkGroup(entry.getKey().getName(), entry.getKey().getValue(), entry.getValue()))
                 .collect(Collectors.toList());
+       groupList.sort(new Comparator<LinkGroup>() {
+           @Override
+           public int compare(LinkGroup o1, LinkGroup o2) {
+               return o1.getOrder() - o2.getOrder();
+           }
+       });
+        return groupList;
     }
 
-    @Override
+
+        @Override
     public Boolean deleteLink(Long id) {
         return linkRepo.removeById(id);
     }

@@ -33,8 +33,13 @@ window.blconfig = {
    * 不同env环境下的特殊配置
    */
   ENV: {
+    // spring方式build
+    // WEBSITE_DEV_BASE_URI: 'http://localhost:8081/',
+    // WEBSITE_API_BASE_URI: 'http://191.168.192.66:8081/',
+    // BLOSSOM_API_BASE_URI: 'http://192.168.192.66:9999/',
+    // 华为云 nginx方式部署
     WEBSITE_DEV_BASE_URI: 'http://localhost:8081/',
-    WEBSITE_API_BASE_URI: 'http://191.168.192.66:8081/',
-    BLOSSOM_API_BASE_URI: 'http://192.168.192.66:9999/',
+    WEBSITE_API_BASE_URI: 'https://graython.us.kg/website-api/',
+    BLOSSOM_API_BASE_URI: 'https://graython.us.kg/blossom-api/',
   },
 };
