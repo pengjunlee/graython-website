@@ -751,7 +751,7 @@ public class ResourceUtil {
 
             if (fileName.endsWith("svg")) {
                 originalImage = convertSVGToBufferedImage(inputStream);
-            } else if (fileName.endsWith("icon")) {
+            } else if (fileName.endsWith("icon") || fileName.endsWith("ico") ) {
                 originalImage = Imaging.getBufferedImage(inputStream);
             } else {
                 originalImage = ImageIO.read(inputStream);
