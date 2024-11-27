@@ -12,7 +12,7 @@ public enum BIZErrorCodeEnum implements ExceptionInfo {
     RESULT_ERROR(false, 20004, "结果异常"),
     UNKNOWN_RES_TYPE_ERROR(false, 20005, "未知资源类型异常"),
     UNSUPPORTED_OPERATION_ERROR(false, 20006, "只读用户禁止操作"),
-
+    RATE_LIMIT_ERROR(false, 20007, "单日流量超过限额"),
     UNKNOWN_ERROR(false, 20099, "未知错误"),
     ;
 

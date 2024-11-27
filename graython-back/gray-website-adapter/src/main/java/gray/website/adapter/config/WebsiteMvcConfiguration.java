@@ -16,9 +16,12 @@ import java.util.concurrent.TimeUnit;
 
 @Configuration
 @RequiredArgsConstructor
+@EnableWebMvc
 public class WebsiteMvcConfiguration implements WebMvcConfigurer {
 
     private final AuthInterceptor authInterceptor;
+
+    private final CustomResourceResolver customResourceResolver;
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
@@ -35,7 +38,7 @@ public class WebsiteMvcConfiguration implements WebMvcConfigurer {
         // 注册自定义的拦截器，并指定拦截的路径
         registry.addInterceptor(authInterceptor)
                 .addPathPatterns("/**")    // 你要拦截的路径，比如所有请求
-                .excludePathPatterns("/thumbnail/**","/preview/**","/website/**","/station/**","/error");  // 排除 /thumbnail/** 路径
+                .excludePathPatterns("/thumbnail/**", "/preview/**", "/website/**", "/station/**", "/error");  // 排除 /thumbnail/** 路径
     }
 
     @Bean
@@ -51,7 +54,6 @@ public class WebsiteMvcConfiguration implements WebMvcConfigurer {
     }
 
 
-
     /**
      * 页面映射
      */
@@ -60,13 +62,15 @@ public class WebsiteMvcConfiguration implements WebMvcConfigurer {
         registry.addViewController("/website/").setViewName("/website/index.html");
         registry.addViewController("/station/").setViewName("/station/index.html");
     }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         //配置本地一个目录，以/docs开头进行访问里面的文件
         registry.addResourceHandler("/thumbnail/**")
                 .addResourceLocations("file:" + ResourceUtil.getResourceRootPath() + ".thumbnail" + File.separator);
         registry.addResourceHandler("/preview/**")
-                .addResourceLocations("file:" + ResourceUtil.getResourceRootPath());
+                .addResourceLocations("file:" + ResourceUtil.getResourceRootPath()).setCachePeriod(3600)
+                .resourceChain(true).addResolver(customResourceResolver); // 使用自定义处理器
         registry.addResourceHandler("/website/**")
                 .addResourceLocations("classpath:/static/website/")
                 .setCacheControl(CacheControl.maxAge(48, TimeUnit.HOURS).cachePublic());

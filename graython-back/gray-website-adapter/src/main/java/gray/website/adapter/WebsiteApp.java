@@ -4,6 +4,7 @@ import gray.bingo.starter.BingoStarter;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @作者 graython
@@ -11,6 +12,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * @日期 2024-01-28 13:01
  */
 @EnableAsync
+@EnableScheduling
 @SpringBootApplication(scanBasePackages = {"gray.website","gray.bingo"})
 @MapperScan(basePackages = {"gray.website.infrastructure.mapper"})
 public class WebsiteApp extends BingoStarter {

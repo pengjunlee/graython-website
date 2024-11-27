@@ -12,6 +12,7 @@ import gray.website.infrastructure.mapper.GrayFolderMapper;
 import gray.website.infrastructure.mapper.GrayResourceMapper;
 import gray.website.infrastructure.repo.GrayFolderRepo;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -53,7 +54,7 @@ public class GrayFolderRepoImpl extends ServiceImpl<GrayFolderMapper, GrayFolder
     }
 
     @Override
-    // @Async("singleThreadTaskExecutor")
+    @Async("singleThreadTaskExecutor")
     public void refresh(Long id) {
         GrayFolder grayFolder = grayFolderMapper.selectById(id);
         if (Objects.isNull(grayFolder)) return;
