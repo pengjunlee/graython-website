@@ -183,10 +183,7 @@ import { parseToc, toScroll, type Toc } from "./scripts/doc-toc";
 import { isShowImg, isShowSvg, tags } from "./scripts/doc-tree-detail";
 import { onHtmlEventDispatch } from "./scripts/doc-content-event-dispatch";
 import {
-  articleInfoOpenApi,
-  articleInfoApi,
-  docTreeOpenApi,
-  docTreeApi,
+  articleInfoOpenApi,  docTreeOpenApi
 } from "@/api/blossom";
 // utils
 import { isNull, isNotNull, isNotBlank } from "@/utils/obj";
@@ -309,6 +306,9 @@ const getCurEditArticle = async (id: string) => {
       return;
     }
     article.value = resp.data;
+    if(window.location.hostname !== 'graython.us.kg'){
+      article.value.html = article.value.html?.replace("https://graython.us.kg/blossom-api","http://192.168.192.66:9999");
+    }
   };
 
   await articleInfoOpenApi({
