@@ -59,8 +59,8 @@ public class WebsiteMvcConfiguration implements WebMvcConfigurer {
      */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/website/").setViewName("/website/index.html");
-        registry.addViewController("/station/").setViewName("/station/index.html");
+        registry.addViewController("/website/").setViewName("forward:/website/index.html");
+        registry.addViewController("/station/").setViewName("forward:/station/index.html");
     }
 
     @Override
