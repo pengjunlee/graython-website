@@ -28,3 +28,9 @@ declare global {
     _MusicPlayer: any; // 或者指定更具体的类型
   }
 }
+
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
+    $common: any; // 或者更具体的类型
+  }
+}
