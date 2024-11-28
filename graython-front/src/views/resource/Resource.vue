@@ -25,10 +25,9 @@
     >
       <template #item="{ item }">
         <img
-          v-lazy="true"
           v-if="item.resourceType === '图片'"
           class="img-item"
-          :data-src="item.thumbnailUrl"
+          :src="item.thumbnailUrl"
           @click="previewImage(item)"
         />
         <AudioCard
