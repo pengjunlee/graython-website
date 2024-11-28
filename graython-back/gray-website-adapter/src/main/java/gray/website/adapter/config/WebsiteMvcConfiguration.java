@@ -8,6 +8,7 @@ import org.springframework.http.CacheControl;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.*;
 
 import java.io.File;
@@ -22,18 +23,35 @@ public class WebsiteMvcConfiguration implements WebMvcConfigurer {
     private final AuthInterceptor authInterceptor;
 
     private final CustomResourceResolver customResourceResolver;
+    @Bean
+    public CorsFilter corsFilter() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.addAllowedOrigin("https://station.graython.us.kg");
+        corsConfiguration.addAllowedOrigin("https://graython.us.kg");
+        corsConfiguration.addAllowedOrigin("http://localhost:5174");
+        corsConfiguration.addAllowedHeader("*");
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.addAllowedMethod("GET");
+        corsConfiguration.addAllowedMethod("POST");
+        corsConfiguration.addAllowedMethod("PUT");
+        corsConfiguration.addAllowedMethod("DELETE");
 
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", corsConfiguration);
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        // Configure allowed origins, methods, headers, etc.
-        registry.addMapping("/**") // This allows all endpoints
-                .allowedOrigins("http://localhost:5174") // Add the frontend URL
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allow the necessary HTTP methods
-                .allowedHeaders("*") // Allow all headers
-                // .allowedOriginPatterns("*")
-                .allowCredentials(true); // Allow credentials if needed (cookies, authorization headers, etc.)
+        return new CorsFilter(source);
     }
+
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        // Configure allowed origins, methods, headers, etc.
+//        registry.addMapping("/**") // This allows all endpoints
+//                .allowedOrigins("http://localhost:5174") // Add the frontend URL
+//                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allow the necessary HTTP methods
+//                .allowedHeaders("*") // Allow all headers
+//                // .allowedOriginPatterns("*")
+//                .allowCredentials(true); // Allow credentials if needed (cookies, authorization headers, etc.)
+//    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
