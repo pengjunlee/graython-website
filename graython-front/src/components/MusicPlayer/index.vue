@@ -298,7 +298,7 @@ onMounted( () => {
     setMusic(index);
   });
   emitter.on("playSelectedMusic", (rows:any) => {
-    musicList.value.unshift(...rows.map((music: any) => {
+    let musics = rows.map((music: any) => {
         return {
           id: music.id,
           name: music.title,
@@ -306,7 +306,8 @@ onMounted( () => {
           img: music.artistThumbnail ? getWebsiteApiBaseUrl() + music.artistThumbnail:"./favicon.png",
           artist: music.artist,
           lyrics: music.lyrics
-        }}));
+        }});
+    musicList.value.unshift(...musics);
   });
 });
 

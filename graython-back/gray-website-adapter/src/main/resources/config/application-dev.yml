@@ -4,7 +4,7 @@ website:
     # 要管理的资源根目录
     root: /Users/pengjunlee/Documents/
     # 每日限制流量，单位M
-    limit-size: 10
+    limit-size: 1024
   aspose:
     # Aspose 文档转换密钥配置
     app-id:

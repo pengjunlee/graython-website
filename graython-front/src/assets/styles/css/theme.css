@@ -61,9 +61,9 @@
   
   --gw-banner-round-1: rgb(228, 28, 8, 0.5);
 
-  --gw-banner-wave-1: url('./bannerWave1.png');
+  --gw-banner-wave-1: url('../bannerWave1.png');
 
-  --gw-banner-wave-2: url('./bannerWave0.png');
+  --gw-banner-wave-2: url('../bannerWave0.png');
 }
 /* 黑夜主题 */
 html.dark {
@@ -81,9 +81,9 @@ html.dark {
 
   --gw-banner-round-1: rgb(248, 249, 250, 0.5);
 
-  --gw-banner-wave-1: url('./bannerWave2.png');
+  --gw-banner-wave-1: url('../bannerWave2.png');
 
-  --gw-banner-wave-2: url('./bannerWave0.png');
+  --gw-banner-wave-2: url('../bannerWave0.png');
 }
 
 :root {
