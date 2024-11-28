@@ -54,7 +54,6 @@ public class GrayFolderRepoImpl extends ServiceImpl<GrayFolderMapper, GrayFolder
     }
 
     @Override
-    @Async("singleThreadTaskExecutor")
     public void refresh(Long id) {
         GrayFolder grayFolder = grayFolderMapper.selectById(id);
         if (Objects.isNull(grayFolder)) return;

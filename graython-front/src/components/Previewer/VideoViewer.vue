@@ -25,9 +25,9 @@
 
 <script setup lang="ts">
 interface VideoPreviewerProps {
-  src: string;
-  name: string;
-  visible: boolean;
+  src: any;
+  name: any;
+  visible: any;
 }
 
 const props = defineProps<VideoPreviewerProps>();

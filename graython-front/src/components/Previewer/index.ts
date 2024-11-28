@@ -5,16 +5,20 @@ import PdfViewer from "./PdfViewer.vue";
 let imagePreviewVNode: any = null; // 存储 VNode 的引用
 let imagePreviewContainer: any = null; // 存储预览容器的引用
 
-const imageVisible = ref(false);
-
+const imageVisible = ref<boolean>(false);
+const imageSrc = ref<string>();
+const imageName = ref<string>();
 // 显示图片预览
 const previewImage = (src: string, name: string) => {
   imageVisible.value = true;
+  imageSrc.value = src;
+  imageName.value = name;
+  debugger;
   // 确保 VNode 只创建一次
   if (!imagePreviewVNode) {
     imagePreviewVNode = createVNode(ImageViewer, {
-      src,
-      name,
+      src:imageSrc,
+      name:imageName,
       visible: imageVisible,
       onClose: hideImagePreview, // 当关闭时调用的函数
     });
@@ -24,9 +28,9 @@ const previewImage = (src: string, name: string) => {
     document.body.appendChild(imagePreviewContainer);
   } else {
     // 更新 VNode 的 props
-    imagePreviewVNode.props.src = src;
-    imagePreviewVNode.props.name = name;
-    imagePreviewVNode.props.visible = imageVisible.value;
+    imagePreviewVNode.props.src = imageSrc;
+    imagePreviewVNode.props.name = imageName;
+    imagePreviewVNode.props.visible = imageVisible;
   }
   // 更新渲染
   render(imagePreviewVNode, imagePreviewContainer);
@@ -36,7 +40,7 @@ const previewImage = (src: string, name: string) => {
 const hideImagePreview = () => {
   if (imagePreviewVNode) {
     imageVisible.value = false;
-    imagePreviewVNode.props.visible = imageVisible.value; // 设置组件为不可见
+    imagePreviewVNode.props.visible = imageVisible; // 设置组件为不可见
     render(imagePreviewVNode, imagePreviewContainer);
   }
 };
@@ -45,15 +49,19 @@ let videoPreviewVNode: any = null; // 存储 VNode 的引用
 let videoPreviewContainer: any = null; // 存储预览容器的引用
 
 const videoVisible = ref(false);
+const videoSrc = ref<string>();
+const videoName = ref<string>();
 
 // 显示视频预览
 const previewVideo = (src: string, name: string) => {
   videoVisible.value = true;
+  videoSrc.value = src;
+  videoName.value = name;
   // 确保 VNode 只创建一次
   if (!videoPreviewVNode) {
     videoPreviewVNode = createVNode(VideoViewer, {
-      src,
-      name,
+      src:videoSrc,
+      name:videoName,
       visible: videoVisible,
       onClose: hideVideoPreview, // 当关闭时调用的函数
     });
@@ -63,9 +71,9 @@ const previewVideo = (src: string, name: string) => {
     document.body.appendChild(videoPreviewContainer);
   } else {
     // 更新 VNode 的 props
-    videoPreviewVNode.props.src = src;
-    videoPreviewVNode.props.name = name;
-    videoPreviewVNode.props.visible = videoVisible.value;
+    videoPreviewVNode.props.src = videoSrc;
+    videoPreviewVNode.props.name = videoName;
+    videoPreviewVNode.props.visible = videoVisible;
   }
 
   // 更新渲染
@@ -76,7 +84,7 @@ const previewVideo = (src: string, name: string) => {
 const hideVideoPreview = () => {
   if (videoPreviewVNode) {
     videoVisible.value = false;
-    videoPreviewVNode.props.visible = videoVisible.value; // 设置组件为不可见
+    videoPreviewVNode.props.visible = videoVisible; // 设置组件为不可见
     render(videoPreviewVNode, videoPreviewContainer);
   }
 };
@@ -84,27 +92,23 @@ const hideVideoPreview = () => {
 let pdfPreviewVNode: any = null; // 存储 VNode 的引用
 let pdfPreviewContainer: HTMLDivElement; // 存储预览容器的引用
 let pdfPreviewDiv: HTMLDivElement | null;
+const pdfParams = reactive<any>({});
 // 显示视频预览
 const previewPdf = (params: any) => {
+  pdfParams.doc =  params.doc;
+  pdfParams.title =  params.title;
+  pdfParams.pages =  params.pages;
+  pdfParams.url =  params.url;
   // 确保 VNode 只创建一次
   if (!pdfPreviewVNode) {
     pdfPreviewVNode = createVNode(PdfViewer, {
-      doc: params.doc,
-      title: params.title,
-      pages: params.pages,
-      url: params.url,
+      params:pdfParams,
       onClose: hidePdfPreview, // 当关闭时调用的函数
     });
 
     // 创建一个用于挂载的容器
     pdfPreviewContainer = document.createElement("div");
     document.body.appendChild(pdfPreviewContainer);
-  } else {
-    // 更新 VNode 的 props
-    pdfPreviewVNode.props.doc = params.doc;
-    pdfPreviewVNode.props.title = params.title;
-    pdfPreviewVNode.props.pages = params.pages;
-    pdfPreviewVNode.props.url = params.url;
   }
 
   // 更新渲染

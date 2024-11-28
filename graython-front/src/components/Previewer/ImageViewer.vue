@@ -35,9 +35,9 @@
 import FileSaver from "file-saver";
 
 interface ImagePreviewerProps {
-  src: string;
-  name: string;
-  visible: boolean;
+  src: any;
+  name: any;
+  visible: any;
 }
 
 const props = defineProps<ImagePreviewerProps>();

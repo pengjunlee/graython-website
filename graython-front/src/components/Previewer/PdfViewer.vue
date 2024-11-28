@@ -24,14 +24,18 @@ import { ref, onMounted, toRefs } from "vue";
 import VuePdfEmbed from "vue-pdf-embed";
 import FileSaver from "file-saver";
 interface PdfProps {
+  params: PdfParams
+}
+interface PdfParams {
   title: string;
   url: string;
   doc: string;
   pages: number;
 }
+
 const props = defineProps<PdfProps>();
 
-const { title, url, doc, pages } = toRefs(props);
+const { title, url, doc, pages } = toRefs(props.params);
 
 const emits = defineEmits(["close"]);
 
