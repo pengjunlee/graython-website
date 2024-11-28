@@ -40,7 +40,7 @@ window.blconfig = {
     // 华为云 nginx方式部署
     // WEBSITE_DEV_BASE_URI: 'http://localhost:8081/',
     WEBSITE_DEV_BASE_URI: '/website-api/',
-    WEBSITE_API_BASE_URI: 'https://graython.us.kg/website-api/',
-    BLOSSOM_API_BASE_URI: 'https://graython.us.kg/blossom-api/',
+    WEBSITE_API_BASE_URI: 'https://pengjunlee.us.kg/website-api/',
+    BLOSSOM_API_BASE_URI: 'https://pengjunlee.us.kg/blossom-api/',
   },
 };
