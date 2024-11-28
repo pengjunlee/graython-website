@@ -1,5 +1,6 @@
 import { isNull } from './obj'
 
+
 /**
  * 跳转新开页面
  * @param url 地址

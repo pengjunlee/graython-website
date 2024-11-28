@@ -47,6 +47,7 @@
 
 
   --gw-bg-font: rgb(46, 52, 60);
+  --gw-bg-font-05: rgb(46, 52, 60, 0.5);
   --gw-bg-font-01: rgb(46, 52, 60, 0.1);
 
   --avatar-xxlarge-size: 128px;
@@ -59,6 +60,10 @@
   --gw-icon-active-color: rgb(64, 158, 255);
   
   --gw-banner-round-1: rgb(228, 28, 8, 0.5);
+
+  --gw-banner-wave-1: url('./bannerWave1.png');
+
+  --gw-banner-wave-2: url('./bannerWave0.png');
 }
 /* 黑夜主题 */
 html.dark {
@@ -70,10 +75,15 @@ html.dark {
   --gw-bg-header: rgb(48, 49, 52);
   --gw-bg-font: rgb(242, 242, 242);
   --gw-bg-font-01: rgb(242, 242, 242, 0.1);
+  --gw-bg-font-05: rgb(242, 242, 242, 0.5);
   --gw-icon-color: deepskyblue;
   --gw-icon-active-color: rgb(64, 158, 255);
 
   --gw-banner-round-1: rgb(248, 249, 250, 0.5);
+
+  --gw-banner-wave-1: url('./bannerWave2.png');
+
+  --gw-banner-wave-2: url('./bannerWave0.png');
 }
 
 :root {
