@@ -23,14 +23,16 @@ public class WebsiteMvcConfiguration implements WebMvcConfigurer {
 
     private final CustomResourceResolver customResourceResolver;
 
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowCredentials(true)
-                .allowedHeaders("*")
-                .allowedOriginPatterns("*")
-                .allowedMethods("*");
-
+        // Configure allowed origins, methods, headers, etc.
+        registry.addMapping("/**") // This allows all endpoints
+                .allowedOrigins("http://localhost:5174") // Add the frontend URL
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allow the necessary HTTP methods
+                .allowedHeaders("*") // Allow all headers
+                // .allowedOriginPatterns("*")
+                .allowCredentials(true); // Allow credentials if needed (cookies, authorization headers, etc.)
     }
 
     @Override
@@ -39,18 +41,6 @@ public class WebsiteMvcConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(authInterceptor)
                 .addPathPatterns("/**")    // 你要拦截的路径，比如所有请求
                 .excludePathPatterns("/thumbnail/**", "/preview/**", "/website/**", "/station/**", "/error");  // 排除 /thumbnail/** 路径
-    }
-
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5174"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
-        configuration.setAllowCredentials(true);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
     }
 
 

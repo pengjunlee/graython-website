@@ -37,7 +37,7 @@ app.directive('view-request',vViewRequest)
 app.use(pinia)
 app.use(router)
 // 挂载 $common 到 globalProperties 上
-app.config.globalProperties.$common = common;
+app.provide('$common', common);
 
 app.component('bl-row', BLRow)
 .component('bl-col', BLCol)

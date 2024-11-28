@@ -34,8 +34,7 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue';
-const instance = getCurrentInstance();
-const $common = instance?.proxy?.$common;
+const $common:any = inject("$common")
 
 // 组件的 props 类型定义
 const props = defineProps({
