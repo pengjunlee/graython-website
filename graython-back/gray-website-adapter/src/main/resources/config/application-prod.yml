@@ -4,7 +4,7 @@ website:
     # 要管理的资源根目录
     root: /mnt/green/media/
     # 每日限制流量，单位M
-    limit-size: 1024
+    limit-size: 10240
   aspose:
     # Aspose 文档转换密钥配置
     app-id:

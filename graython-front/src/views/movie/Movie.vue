@@ -86,12 +86,6 @@
       accept="image/*"
       @change="onFileChange"
     />
-    <GWPreviewVideo
-      v-if="previewShow"
-      :url="currentMovieUrl"
-      :name="currentMovieName"
-      :on-close="closePreview"
-    ></GWPreviewVideo>
     
   </div>
   <!-- 模态框 -->
@@ -239,6 +233,7 @@ const clickThis = (item:Movie) => {
 };
 
 const playThis = (item: {name:string,url:string}) => {
+  debugger;
   currentMovieName.value = item.name;
   currentMovieUrl.value = item.url;
   previewShow.value = true;

@@ -57,6 +57,7 @@ const previewVideo = (src: string, name: string) => {
   videoVisible.value = true;
   videoSrc.value = src;
   videoName.value = name;
+  debugger;
   // 确保 VNode 只创建一次
   if (!videoPreviewVNode) {
     videoPreviewVNode = createVNode(VideoViewer, {

@@ -1,0 +1,1 @@
+import{d as e}from"./request_website-CohkK3U3.js";const s=t=>{const n={headers:{"Content-Type":"multipart/form-data"}};return e.post("/link/add",t,n)},i=t=>e.get("/link/list/"+t),o=()=>e.get("/link/group"),p=t=>e.post("/link/delete/"+t),a=()=>e.get("/link/groups");export{a,s as b,p as d,o as g,i as l};

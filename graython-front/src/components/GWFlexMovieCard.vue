@@ -53,12 +53,10 @@
 <script setup lang="ts">
 import type { Movie } from "@/types/gw.resources";
 import { getWebsiteApiBaseUrl } from "@/utils/env";
-
 import { ref, toRefs, toRaw, computed } from "vue";
-
+import { PreviewerApi } from "@/components/Previewer/index";
 interface ItemProps {
   movie: Movie; // 组件对应的数据
-  play?: (data: any) => void | Promise<void>;
   click?: (data: any) => void | Promise<void>;
 }
 
@@ -104,12 +102,7 @@ function choosePlay(event: { target: any }) {
   playThis();
 }
 function playThis() {
-  if (props?.play) {
-    props.play({
-      name: currentVideName.value,
-      url: getWebsiteApiBaseUrl() + currentVideUrl.value,
-    });
-  }
+  PreviewerApi.previewVideo("https://pengjunlee.us.kg/website-api/"+movie.value.previewUrl,movie.value.title);
 }
 
 let seriesData = computed(() => {
