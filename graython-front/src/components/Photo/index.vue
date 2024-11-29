@@ -18,12 +18,9 @@
         </el-image>
       </div>
       <div class="card-body">
-        <el-tooltip placement="bottom-start" effect="light">
-          <div slot="content">{{ resourcePath.title }}</div>
-          <div class="card-desc">
-            {{ resourcePath.title }}
-          </div>
-        </el-tooltip>
+        <div class="card-desc">
+          {{ resourcePath.title }}
+        </div>
         <div class="card-time">
           Date: {{ $common.getDateDiff(resourcePath.createTime) }}
         </div>
@@ -34,7 +31,7 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue';
-const $common:any = inject("$common")
+const $common: any = inject('$common');
 
 // 组件的 props 类型定义
 const props = defineProps({
@@ -63,8 +60,7 @@ const getBaseUrl = () => {
 .card-item {
   position: relative;
   overflow: hidden;
-  margin: 15px;
-  height: 400px;
+  margin: 1.5rem;
   flex-shrink: 0;
   width: calc(100% / 3 - 30px);
   cursor: pointer;
@@ -106,6 +102,7 @@ const getBaseUrl = () => {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  margin-bottom: 1rem;
   -webkit-box-orient: vertical;
 }
 
@@ -122,16 +119,6 @@ const getBaseUrl = () => {
   }
   .card-image {
     height: 375px;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  .card-item {
-    height: 400px;
-  }
-
-  .card-image {
-    height: 300px;
   }
 }
 
