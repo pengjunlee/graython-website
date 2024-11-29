@@ -11,7 +11,11 @@ print();
 
 export const getBlossomApiBaseUrl = () => {
   // const { protocol, hostname, port } = window.location;
-  return window.blconfig.ENV.BLOSSOM_API_BASE_URI;
+  if (window.location.hostname === 'graython.us.kg') {
+    return window.blconfig.ENV.BLOSSOM_API_BASE_URI;
+  } else {
+    return 'http://192.168.192.66:9999/';
+  }
 };
 
 export const getWebsiteApiBaseUrl = () => {
