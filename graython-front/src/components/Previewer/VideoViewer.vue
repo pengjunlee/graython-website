@@ -38,6 +38,8 @@ const emits = defineEmits(["close"]);
 
 // 点击图片时调用父组件的回调函数
 function closePreview() {
+  var vide = document.getElementById("videoPlayer") as HTMLVideoElement;
+  vide?.pause();
   emits("close");
 }
 
