@@ -46,7 +46,7 @@ const props = defineProps({
 
 const getBaseUrl = () => {
   if (window.location.hostname === 'graython.us.kg') {
-    return 'https://pengjunlee.us.kg/blossom-api';
+    return 'https://pengjunlee.us.kg/website-api';
   } else {
     return 'http://192.168.192.66:8081';
   }

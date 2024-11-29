@@ -307,7 +307,7 @@ const getCurEditArticle = async (id: string) => {
     }
     article.value = resp.data;
     if(window.location.hostname !== 'graython.us.kg'){
-      article.value.html = article.value.html?.replace("https://graython.us.kg/blossom-api","http://192.168.192.66:9999");
+      article.value.html = article.value.html?.replace("https://pengjunlee.us.kg/blossom-api","http://192.168.192.66:9999");
     }
   };
 

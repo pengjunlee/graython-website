@@ -37,14 +37,20 @@ const nightImage = './dark.png';
 const photoList = ref([
   {
     "id": 137,
-    "title": "佳能M50 Mark II拍照",
+    "title": "佳能M50",
     "cover": "/preview/1/wallpaper/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8/12.png",
     "createTime": "2023-07-17 11:37:15"
   },
   {
     "id": 136,
-    "title": "苹果14pro给她拍照",
+    "title": "苹果14pro",
     "cover": "/preview/1/wallpaper/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8/41.png",
+    "createTime": "2023-07-17 11:36:43"
+  },
+  {
+    "id": 135,
+    "title": "苹果16pro",
+    "cover": "/preview/1/wallpaper/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8/9.JPG",
     "createTime": "2023-07-17 11:36:43"
   }
 ]);
