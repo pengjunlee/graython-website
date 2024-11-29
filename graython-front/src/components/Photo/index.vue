@@ -11,7 +11,7 @@
           style="width: 100%; height: 100%"
           lazy
           :preview-src-list="[resourcePath.cover]"
-          :src="getBaseUrl() + resourcePath.cover"
+          :src="getWebsiteApiBaseUrl() + resourcePath.cover"
           fit="cover"
         >
           <div slot="error" class="image-slot"></div>
@@ -31,6 +31,7 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue';
+import { getWebsiteApiBaseUrl } from '@/utils/env';
 const $common: any = inject('$common');
 
 // 组件的 props 类型定义
@@ -41,13 +42,6 @@ const props = defineProps({
   },
 });
 
-const getBaseUrl = () => {
-  if (window.location.hostname === 'graython.us.kg') {
-    return 'https://pengjunlee.us.kg/website-api';
-  } else {
-    return 'http://192.168.192.66:8081';
-  }
-};
 </script>
 
 <style scoped>

@@ -102,7 +102,7 @@ function choosePlay(event: { target: any }) {
   playThis();
 }
 function playThis() {
-  PreviewerApi.previewVideo("https://pengjunlee.us.kg/website-api/"+movie.value.previewUrl,movie.value.title);
+  PreviewerApi.previewVideo(getWebsiteApiBaseUrl() +currentVideUrl.value,currentVideName.value);
 }
 
 let seriesData = computed(() => {

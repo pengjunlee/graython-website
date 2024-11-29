@@ -1,9 +1,9 @@
-import { isNull } from "@/utils/obj";
+import { isNull } from '@/utils/obj';
 
 const viteBaseUrl = import.meta.env.WEBSITE_API_BASE_URI;
 const print = () => {
-  console.log("Graython-Website ===> 环境:", import.meta.env.MODE);
-  console.log("Graython-Website ===> viteBaseUrl:", viteBaseUrl);
+  console.log('Graython-Website ===> 环境:', import.meta.env.MODE);
+  console.log('Graython-Website ===> viteBaseUrl:', viteBaseUrl);
   console.log(window.blconfig);
 };
 
@@ -12,19 +12,22 @@ print();
 export const getBlossomApiBaseUrl = () => {
   // const { protocol, hostname, port } = window.location;
   return window.blconfig.ENV.BLOSSOM_API_BASE_URI;
-  
 };
 
 export const getWebsiteApiBaseUrl = () => {
-
   if (isSpring()) {
-    return '../'
+    return '../';
   }
 
-  if (import.meta.env.MODE == 'development'){
+  if (import.meta.env.MODE == 'development') {
     return window.blconfig.ENV.WEBSITE_DEV_BASE_URI;
   }
-  return window.blconfig.ENV.WEBSITE_API_BASE_URI;
+
+  if (window.location.hostname === 'graython.us.kg') {
+    return window.blconfig.ENV.WEBSITE_API_BASE_URI;
+  } else {
+    return 'http://192.168.192.66:8081/';
+  }
 };
 
 /**
@@ -32,10 +35,8 @@ export const getWebsiteApiBaseUrl = () => {
  * @returns
  */
 export const isSpring = () => {
-  return import.meta.env.MODE === 'spring'
-}
-
-
+  return import.meta.env.MODE === 'spring';
+};
 
 export const getUserId = () => {
   if (isNull(window.blconfig.SYS.USER_ID)) {
@@ -48,28 +49,28 @@ export const getUserId = () => {
 
 export const getSysName = () => {
   if (isNull(window.blconfig.SYS.NAME)) {
-    return "Blossom";
+    return 'Blossom';
   }
   return window.blconfig.SYS.NAME;
 };
 
 export const getEmail = () => {
   if (isNull(window.blconfig.SYS.EMAIL)) {
-    return "";
+    return '';
   }
   return window.blconfig.SYS.EMAIL;
 };
 
 export const getGwab = () => {
   if (isNull(window.blconfig.SYS.GONG_WANG_AN_BEI)) {
-    return "";
+    return '';
   }
   return window.blconfig.SYS.GONG_WANG_AN_BEI;
 };
 
 export const getIpc = () => {
   if (isNull(window.blconfig.SYS.ICP_BEI_AN_HAO)) {
-    return "";
+    return '';
   }
   return window.blconfig.SYS.ICP_BEI_AN_HAO;
 };
@@ -79,7 +80,7 @@ export const getIpc = () => {
 export const getThemeLogoStyle = () => {
   if (isNull(window.blconfig.THEME.LOGO_STYLE)) {
     return {
-      "border-radius": "50%",
+      'border-radius': '50%',
     };
   }
   return window.blconfig.THEME.LOGO_STYLE;
@@ -91,8 +92,6 @@ export const getThemeSubjecTitle = () => {
   }
   return window.blconfig.THEME.SUBJECT_TITLE;
 };
-
-
 
 // 判断是否是 IP 地址
 const isIPHostname = (hostname: string) => {
