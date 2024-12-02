@@ -23,9 +23,10 @@ public enum LinkGroupEnum implements BaseIntEnum {
     ;
 
     @EnumValue
+    @JsonValue
     private final Integer value;
 
-    @JsonValue
+    // @JsonValue
     private final String name;
 
     static {
