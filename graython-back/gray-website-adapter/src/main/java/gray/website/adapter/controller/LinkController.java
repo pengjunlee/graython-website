@@ -11,6 +11,7 @@ import gray.website.common.entity.GrayLink;
 import gray.website.common.enums.LinkGroupEnum;
 import gray.website.common.rsp.link.LinkGroup;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,9 +37,9 @@ public class LinkController {
      *
      * @return
      */
-    @PostMapping("/add")
+    @PostMapping(value = "/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ReadOnly
-    public R<GrayLink> addLink(@RequestPart(value = "file", required = false) MultipartFile file, @RequestPart("entity") String grayLink) {
+    public R<GrayLink> addLink(@RequestParam(value = "file", required = false) MultipartFile file, @RequestParam("entity") String grayLink) {
         return R.ok(linkService.addLink(file, JsonUtil.toObj(grayLink, GrayLink.class)));
     }
 
