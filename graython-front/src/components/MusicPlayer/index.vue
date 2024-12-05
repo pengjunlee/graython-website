@@ -1,22 +1,21 @@
 <script setup lang="ts">
-import emitter from "@/utils/mitt";
-import { randomMusicApi } from "@/api/music"
-import { getWebsiteApiBaseUrl } from '@/utils/env'
-import { ro } from "element-plus/es/locales.mjs";
+import emitter from '@/utils/mitt';
+import { randomMusicApi } from '@/api/music';
+import { getWebsiteApiBaseUrl } from '@/utils/env';
+import { ro } from 'element-plus/es/locales.mjs';
 const isPlaying = ref(false);
-const currentMusic = ref({id: '',
-          name: '',
-          src: '',
-          img: "./favicon.png",
-          artist: '',
-          lyrics: ''
-        });
-const musicList = ref<any[]>([
-]);
+const currentMusic = ref({
+  id: '',
+  name: '',
+  src: '',
+  img: './favicon.png',
+  artist: '',
+  lyrics: '',
+});
+const musicList = ref<any[]>([]);
 const showPlayer = ref(false);
 const musicPlayerRef = ref();
 const showLyrics = ref<boolean>(false);
-
 
 const audioRef = ref();
 const musicImgRef = ref();
@@ -35,9 +34,8 @@ const soundProgressBarRef = ref();
 
 const firstTimeMusicLyric = ref(true);
 
-
 let musicImageSrc = computed(() => {
-  return "./favicon.png";
+  return './favicon.png';
 });
 
 let timer: any;
@@ -58,12 +56,12 @@ function canPlay() {
 function timeAndProgress() {
   if (showPlayer.value && playerProgressRef.value) {
     playerProgressRef.value.style.width =
-      (audioRef.value.currentTime / audioRef.value.duration) * 100 + "%";
+      (audioRef.value.currentTime / audioRef.value.duration) * 100 + '%';
     let time: number = audioRef.value.duration - audioRef.value.currentTime;
     let minue = parseInt(String(time / 60));
     let second = parseInt(String(time % 60));
-    let str = `${minue < 10 ? "0" + minue : minue}:${
-      second < 10 ? "0" + second : second
+    let str = `${minue < 10 ? '0' + minue : minue}:${
+      second < 10 ? '0' + second : second
     }`;
     musicTimeRef.value.innerHTML = str;
     lycSlide();
@@ -78,39 +76,38 @@ let lrcArr: string[] = [];
 function lycSlide() {
   if (showLyrics.value) {
     let index = binarySearch(timeArr, Math.floor(audioRef.value.currentTime));
-    if(index < 0 ) index = 0;
-    lyricContentRef.value.style.top = index * -21 + 150 + "px";
+    if (index < 0) index = 0;
+    lyricContentRef.value.style.top = index * -21 + 150 + 'px';
     [...lyricContentRef.value.children].forEach((item) => {
-      item.style.color = "var(--gw-bg-font)";
+      item.style.color = 'var(--gw-bg-font)';
     });
-    lyricContentRef.value.children[index].style.color = "aqua";
+    lyricContentRef.value.children[index].style.color = 'aqua';
   }
 }
 
 function lyricInit() {
   // 获取歌词
-  let insertLrcStr = "";
+  let insertLrcStr = '';
   timeArr = [];
   lrcArr = [];
   let lyricStr = currentMusic?.value.lyrics;
-  if(!lyricStr) {
+  if (!lyricStr) {
     insertLrcStr += '<li>未发现歌词</li>';
     timeArr = [0];
-  }else{
+  } else {
     try {
-    const str = lyricStr.split("\n");
-    str.forEach((item: any) => {
-      const splitLyc = item.split("::");
-      timeArr.push(splitLyc[0]);
-      lrcArr.push(splitLyc[1]);
-      insertLrcStr += `<li>${lrcArr[lrcArr.length - 1]}</li>`;
-    });
-  } catch (e) {
-    insertLrcStr += '<li>歌词格式不正确</li>';
-    timeArr = [0];
+      const str = lyricStr.split('\n');
+      str.forEach((item: any) => {
+        const splitLyc = item.split('::');
+        timeArr.push(splitLyc[0]);
+        lrcArr.push(splitLyc[1]);
+        insertLrcStr += `<li>${lrcArr[lrcArr.length - 1]}</li>`;
+      });
+    } catch (e) {
+      insertLrcStr += '<li>歌词格式不正确</li>';
+      timeArr = [0];
+    }
   }
-  }
-  
 
   if (showPlayer.value) {
     lyricContentRef.value.innerHTML = insertLrcStr;
@@ -120,7 +117,7 @@ function lyricInit() {
 // 格式化时间
 function timeFormat(timeStr: string) {
   if (timeStr) {
-    const timeStrArr = timeStr.split(":");
+    const timeStrArr = timeStr.split(':');
     const minute = timeStrArr[0];
     const second = timeStrArr[1];
     return parseInt(minute) * 60 + parseInt(second);
@@ -129,17 +126,18 @@ function timeFormat(timeStr: string) {
 
 // 设置播放的音乐和图片
 function setMusic(index: number) {
+  nowPlayIndex = index;
   if (musicList.value.length > 0) {
     let music = musicList.value[index];
     currentMusic.value = music;
     // musicImgRef.value.src = music.img;
     audioRef.value.src = music.src;
-    emitter.emit('musicChanged',currentMusic.value);
+    emitter.emit('musicChanged', currentMusic.value);
     firstTimeMusicLyric.value = true;
     if (showPlayer.value) {
       musicAuthorRef.value.innerHTML = music.artist;
       musicNameRef.value.innerHTML = music.title;
-      if(showLyrics.value){
+      if (showLyrics.value) {
         lyricInit();
       }
     }
@@ -170,6 +168,7 @@ function previousMusic() {
 
 // 下一首
 function nextMusic() {
+  debugger;
   if (nowPlayIndex == musicList.value.length - 1) {
     nowPlayIndex = 0;
   } else {
@@ -192,19 +191,19 @@ function binarySearch(arr: any, target: any, left = 0, right = arr.length - 1) {
 }
 
 function toogleLyrics() {
-  if(firstTimeMusicLyric.value){
+  if (firstTimeMusicLyric.value) {
     lyricInit();
     firstTimeMusicLyric.value = false;
   }
   if (!showLyrics.value) {
-    musicInfoRef.value.style.display = "block";
-    lyricMaskRef.value.style.display = "block";
-    infoLeftRef.value.style.width = "100%";
+    musicInfoRef.value.style.display = 'block';
+    lyricMaskRef.value.style.display = 'block';
+    infoLeftRef.value.style.width = '100%';
     showLyrics.value = true;
   } else {
-    musicInfoRef.value.style.display = "flex";
-    lyricMaskRef.value.style.display = "none";
-    infoLeftRef.value.style.width = "40%";
+    musicInfoRef.value.style.display = 'flex';
+    lyricMaskRef.value.style.display = 'none';
+    infoLeftRef.value.style.width = '40%';
     showLyrics.value = false;
   }
 }
@@ -218,7 +217,7 @@ function adjustProgress(e: any) {
 function adjustSound(e: any) {
   audioRef.value.volume = e.offsetX / e.target.offsetWidth;
   soundProgressRef.value.style.width =
-    (e.offsetX / e.target.offsetWidth) * 100 + "%";
+    (e.offsetX / e.target.offsetWidth) * 100 + '%';
 }
 
 // 声音拖动
@@ -235,7 +234,7 @@ function roundMouseDown() {
     } else if (disX == 0) {
       disX = 0;
     }
-    soundProgressRef.value.style.width = (disX / soundBarLength) * 100 + "%";
+    soundProgressRef.value.style.width = (disX / soundBarLength) * 100 + '%';
     audioRef.value.volume = disX / soundBarLength;
   };
 
@@ -259,25 +258,25 @@ const startDrag = (event: MouseEvent) => {
   }
 
   // 监听鼠标移动和释放事件
-  document.addEventListener("mousemove", onDrag);
-  document.addEventListener("mouseup", stopDrag);
+  document.addEventListener('mousemove', onDrag);
+  document.addEventListener('mouseup', stopDrag);
 };
 
 // 拖动过程
 const onDrag = (event: MouseEvent) => {
   if (isDragging.value && musicPlayerRef.value) {
-    musicPlayerRef.value.style.left = event.clientX + width / 2 - 18 + "px";
-    musicPlayerRef.value.style.top = event.clientY + height / 2 - 18.75 + "px";
+    musicPlayerRef.value.style.left = event.clientX + width / 2 - 18 + 'px';
+    musicPlayerRef.value.style.top = event.clientY + height / 2 - 18.75 + 'px';
   }
 };
 
 // 停止拖动
 const stopDrag = () => {
   isDragging.value = false;
-  document.removeEventListener("mousemove", onDrag);
-  document.removeEventListener("mouseup", stopDrag);
+  document.removeEventListener('mousemove', onDrag);
+  document.removeEventListener('mouseup', stopDrag);
 };
-onMounted( () => {
+onMounted(() => {
   const instance = getCurrentInstance();
   if (instance) {
     // 可以访问组件实例
@@ -285,39 +284,50 @@ onMounted( () => {
   }
 
   setMusic(0);
-  emitter.on("playMusic", () => {
+  emitter.on('playMusic', () => {
     playMusic();
   });
-  emitter.on("previousMusic", () => {
+  emitter.on('previousMusic', () => {
     previousMusic();
   });
-  emitter.on("nextMusic", () => {
+  emitter.on('nextMusic', () => {
     nextMusic();
   });
-  emitter.on("setMusic", (index:any) => {
+  emitter.on('setMusic', (index: any) => {
     setMusic(index);
   });
-  emitter.on("playSelectedMusic", (rows:any) => {
+  emitter.on('playSelectedMusic', (rows: any) => {
     let musics = rows.map((music: any) => {
-        return {
-          id: music.id,
-          name: music.title,
-          src: getWebsiteApiBaseUrl() + music.previewUrl.replace("//","/"),
-          img: music.artistThumbnail ? getWebsiteApiBaseUrl() + music.artistThumbnail:"./favicon.png",
-          artist: music.artist,
-          lyrics: music.lyrics
-        }});
+      return {
+        id: music.id,
+        name: music.title,
+        src: getWebsiteApiBaseUrl() + music.previewUrl.replace('//', '/'),
+        img: music.artistThumbnail
+          ? getWebsiteApiBaseUrl() + music.artistThumbnail
+          : './favicon.png',
+        artist: music.artist,
+        lyrics: music.lyrics,
+      };
+    });
+    debugger;
+    // 先获取musics中所有元素的id，组成一个集合，方便后续判断
+    const musicsIdSet = new Set(musics.map((item: { id: any; }) => item.id));
+
+    // 过滤musicList，只保留id不在musicsIdSet中的元素
+    musicList.value = musicList.value.filter(
+      (item) => !musicsIdSet.has(item.id),
+    );
     musicList.value.unshift(...musics);
   });
 });
 
 onUnmounted(() => {
   delete window._MusicPlayer;
-  emitter.off("playMusic");
-  emitter.off("previousMusic");
-  emitter.off("nextMusic");
-  emitter.off("setMusic");
-  emitter.off("playSelectedMusic");
+  emitter.off('playMusic');
+  emitter.off('previousMusic');
+  emitter.off('nextMusic');
+  emitter.off('setMusic');
+  emitter.off('playSelectedMusic');
 });
 import { defineExpose } from 'vue';
 // 使用 defineExpose 暴露 playMusic 方法
@@ -356,7 +366,6 @@ defineExpose({
             alt=""
             :src="currentMusic.img"
             onerror="this.src='./favicon.png';"
-
           />
           <div ref="lyricMaskRef" class="lyric-mask">
             <div class="lyric-wrapper">
@@ -371,8 +380,12 @@ defineExpose({
 
         <div class="info-right">
           <div class="music-name">
-            <span ref="musicNameRef" class="name">{{ currentMusic.name || '放首歌听听吧' }}</span>
-            <span ref="musicAuthorRef" class="musician">{{ currentMusic.artist|| '' }}</span>
+            <span ref="musicNameRef" class="name">{{
+              currentMusic.name || '放首歌听听吧'
+            }}</span>
+            <span ref="musicAuthorRef" class="musician">{{
+              currentMusic.artist || ''
+            }}</span>
           </div>
           <div class="playback-setting">
             <span
@@ -407,7 +420,7 @@ defineExpose({
     <div class="info-box">
       <div class="info">
         <div class="text-sm whitespace-nowrap">
-          {{ currentMusic?.name || "放首歌来听吧" }}
+          {{ currentMusic?.name || '放首歌来听吧' }}
         </div>
         <div class="text-sm whitespace-nowrap">
           {{ currentMusic?.artist }}
@@ -436,8 +449,8 @@ defineExpose({
 </template>
 
 <style lang="scss" scoped>
-@import "./style.css";
-@import "@/assets/styles/iconfont/player/iconfont.css";
+@import './style.css';
+@import '@/assets/styles/iconfont/player/iconfont.css';
 
 .music-disc {
   position: fixed;
