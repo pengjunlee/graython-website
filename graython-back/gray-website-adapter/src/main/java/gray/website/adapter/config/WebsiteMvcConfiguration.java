@@ -30,6 +30,7 @@ public class WebsiteMvcConfiguration implements WebMvcConfigurer {
         corsConfiguration.addAllowedOrigin("https://graython.us.kg");
         corsConfiguration.addAllowedOrigin("http://localhost:5174");
         corsConfiguration.addAllowedOrigin("http://192.168.31.66:8081");
+        corsConfiguration.addAllowedOrigin("http://192.168.192.66:8081");
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.addAllowedMethod("GET");

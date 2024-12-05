@@ -9,6 +9,8 @@ import gray.bingo.common.entity.R;
 import gray.bingo.common.utils.JsonUtil;
 import gray.website.api.ResourceService;
 import gray.website.common.config.ReadOnly;
+import gray.website.common.dto.DirectoryNode;
+import gray.website.common.dto.DirectoryTree;
 import gray.website.common.entity.GrayCollection;
 import gray.website.common.entity.GrayLibrary;
 import gray.website.common.entity.GrayResource;
@@ -18,9 +20,8 @@ import gray.website.common.qry.ResourcePageQry;
 import gray.website.common.qry.VideoExtractQry;
 import gray.website.common.rsp.resource.LibraryResourceStatistics;
 import gray.website.common.utils.ResourceUtil;
-import gray.website.common.dto.DirectoryNode;
-import gray.website.common.dto.DirectoryTree;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -90,7 +91,7 @@ public class ResourceController {
      *
      * @return
      */
-    @PostMapping("/library/add")
+    @PostMapping(value = "/library/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ReadOnly
     public R<GrayLibrary> addLibrary(@RequestBody GrayLibrary grayLibrary) {
         return R.ok(resourceService.addLibrary(grayLibrary));
@@ -188,7 +189,7 @@ public class ResourceController {
      *
      * @return
      */
-    @PostMapping("/collection/add")
+    @PostMapping(value = "/collection/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ReadOnly
     public R<GrayCollection> addCollection(@RequestPart(value = "file", required = false) MultipartFile file, @RequestPart("entity") String grayCollection) {
         return R.ok(resourceService.addCollection(file, JsonUtil.toObj(grayCollection, GrayCollection.class)));
