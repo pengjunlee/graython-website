@@ -91,7 +91,7 @@ public class ResourceController {
      *
      * @return
      */
-    @PostMapping(value = "/library/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/library/add")
     @ReadOnly
     public R<GrayLibrary> addLibrary(@RequestBody GrayLibrary grayLibrary) {
         return R.ok(resourceService.addLibrary(grayLibrary));
@@ -191,7 +191,7 @@ public class ResourceController {
      */
     @PostMapping(value = "/collection/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ReadOnly
-    public R<GrayCollection> addCollection(@RequestPart(value = "file", required = false) MultipartFile file, @RequestPart("entity") String grayCollection) {
+    public R<GrayCollection> addCollection(@RequestParam(value = "file", required = false) MultipartFile file, @RequestParam("entity") String grayCollection) {
         return R.ok(resourceService.addCollection(file, JsonUtil.toObj(grayCollection, GrayCollection.class)));
     }
 
