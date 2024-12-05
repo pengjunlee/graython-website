@@ -2,7 +2,6 @@
 import emitter from '@/utils/mitt';
 import { randomMusicApi } from '@/api/music';
 import { getWebsiteApiBaseUrl } from '@/utils/env';
-import { ro } from 'element-plus/es/locales.mjs';
 const isPlaying = ref(false);
 const currentMusic = ref({
   id: '',
@@ -282,8 +281,24 @@ onMounted(() => {
     // 可以访问组件实例
     window._MusicPlayer = instance.proxy; // 通过 proxy 获取到组件实例
   }
+  randomMusicApi(5).then((rsp) =>{
 
-  setMusic(0);
+    let musics = rsp.data.map((music: any) => {
+      return {
+        id: music.id,
+        name: music.title,
+        src: getWebsiteApiBaseUrl() + music.previewUrl.replace('//', '/'),
+        img: music.artistThumbnail
+          ? getWebsiteApiBaseUrl() + music.artistThumbnail
+          : './favicon.png',
+        artist: music.artist,
+        lyrics: music.lyrics,
+      };
+    });
+    musicList.value.unshift(...musics);
+    setMusic(0);
+  });
+
   emitter.on('playMusic', () => {
     playMusic();
   });
