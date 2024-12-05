@@ -168,7 +168,7 @@ function previousMusic() {
 
 // 下一首
 function nextMusic() {
-  debugger;
+  
   if (nowPlayIndex == musicList.value.length - 1) {
     nowPlayIndex = 0;
   } else {
@@ -309,7 +309,7 @@ onMounted(() => {
         lyrics: music.lyrics,
       };
     });
-    debugger;
+    
     // 先获取musics中所有元素的id，组成一个集合，方便后续判断
     const musicsIdSet = new Set(musics.map((item: { id: any; }) => item.id));
 
