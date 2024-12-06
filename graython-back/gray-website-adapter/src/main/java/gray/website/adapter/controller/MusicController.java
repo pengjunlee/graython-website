@@ -11,6 +11,7 @@ import gray.website.common.entity.GrayMusic;
 import gray.website.common.qry.MusicPageQry;
 import gray.website.common.qry.SubFolderQry;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -114,9 +115,9 @@ public class MusicController {
      *
      * @return
      */
-    @PostMapping("/musician/add")
+    @PostMapping(value = "/musician/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ReadOnly
-    public R<Boolean> addMusician(@RequestPart(value = "file", required = false) MultipartFile file, @RequestPart("entity") String grayCollection) {
+    public R<Boolean> addMusician(@RequestParam(value = "file", required = false) MultipartFile file, @RequestParam("entity") String grayCollection) {
         return R.ok(musicService.addMusician(file, JsonUtil.toObj(grayCollection, GrayCollection.class)));
     }
 }
