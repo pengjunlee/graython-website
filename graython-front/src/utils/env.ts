@@ -13,7 +13,9 @@ export const getBlossomApiBaseUrl = () => {
   // const { protocol, hostname, port } = window.location;
   if (window.location.hostname === 'graython.us.kg') {
     return window.blconfig.ENV.BLOSSOM_API_BASE_URI;
-  } else {
+  } else if (window.location.hostname === '192.168.31.66') {
+    return 'http://192.168.31.66:9999/';
+  }{
     return 'http://192.168.192.66:9999/';
   }
 };
