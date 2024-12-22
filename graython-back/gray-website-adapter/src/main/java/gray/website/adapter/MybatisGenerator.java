@@ -13,7 +13,7 @@ public class MybatisGenerator {
         // 数据库密码
         final String PASSWORD = "Root@123456";
         // 需要生成代码的数据表
-        String[] tableNames = {"gray_music"};
+        String[] tableNames = {"gray_job"};
         BingoMybatisGeneratorConfig generatorConfig = BingoMybatisGeneratorConfig.build4MultiModule()
                 .dataSource(DB_URL, USERNAME, PASSWORD)
                 .author("graython")

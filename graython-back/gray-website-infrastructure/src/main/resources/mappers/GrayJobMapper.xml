@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gray.website.infrastructure.mapper.GrayJobMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="gray.website.common.entity.GrayJob">
+        <id column="id" property="id" />
+        <result column="company" property="company" />
+        <result column="unique_id" property="uniqueId" />
+        <result column="name" property="name" />
+        <result column="url" property="url" />
+        <result column="city" property="city" />
+        <result column="dept" property="dept" />
+        <result column="head_count" property="headCount" />
+        <result column="experience" property="experience" />
+        <result column="degree" property="degree" />
+        <result column="detail" property="detail" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, company, unique_id, name, url, city, dept, head_count, experience, degree, detail
+    </sql>
+
+</mapper>

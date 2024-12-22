@@ -5,7 +5,7 @@
 
 #### 启动命令
 Blossom：
-java -jar ./backend-blossom.jar --server.port=9999 --spring.datasource.url="jdbc:mysql://localhost:3306/blossom?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&allowMultiQueries=true&useSSL=false&&serverTimezone=GMT%2B8" --spring.datasource.username=root --spring.datasource.password=Root@123456 --project.iaas.blos.default-path=/mnt/green/blossom/img
+java -jar ./backend-blossom.jar --server.port=9999 --spring.datasource.url="jdbc:mysql://localhost:3306/blossom?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&allowMultiQueries=true&useSSL=false&&serverTimezone=GMT%2B8" --spring.datasource.username=root --spring.datasource.password=Root@123456 --project.iaas.blos.default-path=/mnt/green/blossom/img &
 
 #### 资源存放目录结构
 

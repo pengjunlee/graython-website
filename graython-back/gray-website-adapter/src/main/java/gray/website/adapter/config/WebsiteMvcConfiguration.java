@@ -29,6 +29,8 @@ public class WebsiteMvcConfiguration implements WebMvcConfigurer {
         corsConfiguration.addAllowedOrigin("https://station.graython.us.kg");
         corsConfiguration.addAllowedOrigin("https://graython.us.kg");
         corsConfiguration.addAllowedOrigin("http://localhost:5174");
+        corsConfiguration.addAllowedOrigin("http://localhost:5173");
+        corsConfiguration.addAllowedOrigin("https://lietou.meituan.com");
         corsConfiguration.addAllowedOrigin("http://192.168.31.66:8081");
         corsConfiguration.addAllowedOrigin("http://192.168.192.66:8081");
         corsConfiguration.addAllowedHeader("*");
@@ -60,7 +62,7 @@ public class WebsiteMvcConfiguration implements WebMvcConfigurer {
         // 注册自定义的拦截器，并指定拦截的路径
         registry.addInterceptor(authInterceptor)
                 .addPathPatterns("/**")    // 你要拦截的路径，比如所有请求
-                .excludePathPatterns("/thumbnail/**", "/preview/**", "/website/**", "/station/**", "/error");  // 排除 /thumbnail/** 路径
+                .excludePathPatterns("/thumbnail/**", "/preview/**", "/website/**","/admin/**", "/station/**", "/error");  // 排除 /thumbnail/** 路径
     }
 
 
@@ -71,6 +73,8 @@ public class WebsiteMvcConfiguration implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/website/").setViewName("forward:/website/index.html");
         registry.addViewController("/station/").setViewName("forward:/station/index.html");
+        registry.addViewController("/admin/").setViewName("forward:/admin/index.html");
+
     }
 
     @Override
@@ -86,6 +90,9 @@ public class WebsiteMvcConfiguration implements WebMvcConfigurer {
                 .setCacheControl(CacheControl.maxAge(48, TimeUnit.HOURS).cachePublic());
         registry.addResourceHandler("/station/**")
                 .addResourceLocations("classpath:/static/station/")
+                .setCacheControl(CacheControl.maxAge(48, TimeUnit.HOURS).cachePublic());
+        registry.addResourceHandler("/admin/**")
+                .addResourceLocations("classpath:/static/admin/")
                 .setCacheControl(CacheControl.maxAge(48, TimeUnit.HOURS).cachePublic());
     }
 
