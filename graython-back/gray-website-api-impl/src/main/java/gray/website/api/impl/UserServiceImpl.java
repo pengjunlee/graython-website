@@ -23,6 +23,7 @@ import gray.website.infrastructure.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
@@ -38,6 +39,8 @@ public class UserServiceImpl implements UserService {
 
     private final BlossomClient blossomClient;
 
+    @Value("${website.blossom.service}")
+    private String blossomServiceLocation;
     @SneakyThrows
     @Override
     public User login(String name, String password) {
@@ -95,5 +98,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public AccessToken check() {
         return blossomClient.checkLoginStatus();
+    }
+
+    @Override
+    public String blossom() {
+        return blossomServiceLocation;
     }
 }

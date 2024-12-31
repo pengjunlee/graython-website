@@ -5,7 +5,6 @@ import gray.website.common.cst.WebsiteConst;
 import gray.website.common.utils.AsposeUtil;
 import gray.website.infrastructure.repo.BaseSysParamRepo;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;

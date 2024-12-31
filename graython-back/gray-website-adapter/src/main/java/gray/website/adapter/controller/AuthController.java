@@ -1,5 +1,6 @@
 package gray.website.adapter.controller;
 
+import gray.bingo.common.anno.Anonymous;
 import gray.bingo.common.entity.R;
 import gray.website.api.UserService;
 import gray.website.common.config.AccessToken;
@@ -34,4 +35,14 @@ public class AuthController {
         return R.ok(userService.check());
     }
 
+    /**
+     * Blossom服务地址
+     *
+     * @return
+     */
+    @GetMapping("/blossom")
+    @Anonymous
+    public R<String> blossom() {
+        return R.ok(userService.blossom());
+    }
 }

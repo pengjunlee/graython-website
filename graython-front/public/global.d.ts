@@ -4,6 +4,7 @@ interface envMeta {
   WEBSITE_DEV_BASE_URI:string
   WEBSITE_API_BASE_URI:string
   BLOSSOM_API_BASE_URI:string
+  BLOSSOM_SPRING_API_URI:string
 }
 
 declare global {

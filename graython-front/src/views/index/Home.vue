@@ -23,7 +23,7 @@
       <div id="bannerWave1"></div>
       <div id="bannerWave2"></div>
     </div>
-    <photo :resourcePathList="photoList"></photo>
+    <!-- <photo :resourcePathList="photoList"></photo> -->
   </div>
 </template>
 
@@ -34,26 +34,26 @@ import emitter from '@/utils/mitt';
 
 const dayImage = './light.png';
 const nightImage = './dark.png';
-const photoList = ref([
-  {
-    "id": 137,
-    "title": "佳能M50",
-    "cover": "/preview/1/wallpaper/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8/12.png",
-    "createTime": "2023-07-17 11:37:15"
-  },
-  {
-    "id": 136,
-    "title": "苹果14pro",
-    "cover": "/preview/1/wallpaper/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8/41.png",
-    "createTime": "2023-07-17 11:36:43"
-  },
-  {
-    "id": 135,
-    "title": "苹果16pro",
-    "cover": "/preview/1/wallpaper/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8/9.JPG",
-    "createTime": "2023-07-17 11:36:43"
-  }
-]);
+// const photoList = ref([
+//   {
+//     "id": 137,
+//     "title": "佳能M50",
+//     "cover": "/preview/1/wallpaper/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8/12.png",
+//     "createTime": "2023-07-17 11:37:15"
+//   },
+//   {
+//     "id": 136,
+//     "title": "苹果14pro",
+//     "cover": "/preview/1/wallpaper/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8/41.png",
+//     "createTime": "2023-07-17 11:36:43"
+//   },
+//   {
+//     "id": 135,
+//     "title": "苹果16pro",
+//     "cover": "/preview/1/wallpaper/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8/9.JPG",
+//     "createTime": "2023-07-17 11:36:43"
+//   }
+// ]);
 
 // 定义响应式数据
 const textToPrint = ref('技术造就艺术!');

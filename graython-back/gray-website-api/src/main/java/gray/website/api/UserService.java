@@ -22,4 +22,6 @@ public interface UserService {
     User register(String username, String password);
 
     AccessToken check();
+
+    String blossom();
 }

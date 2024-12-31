@@ -5,13 +5,9 @@ import { ElMessage } from 'element-plus'
 import { Local } from '@/utils/storage'
 import { isNotNull } from '@/utils/obj'
 import { storeKey as authKey, useUserStore } from '@/stores/user'
-import { getUserId } from '@/utils/env'
 import { getWebsiteApiBaseUrl } from '@/utils/env'
 import router from '@/router';  // 引入 Vue Router 实例
 
-
-
-const userId = getUserId()
 const baseUrl = getWebsiteApiBaseUrl()
 
 export class Request {
@@ -41,7 +37,6 @@ export class Request {
         config.headers = {
           ...config.headers,
           ...{
-            'Blossom-User-Id': userId,
             Authorization: 'Bearer ' + token
           }
         }

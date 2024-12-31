@@ -148,3 +148,7 @@ export const deleteCollectionApi = ( params: any ): Promise<R<any>> => {
 export const deleteResourceApi = ( params: any ): Promise<R<any>> => {
   return rq.post<R<any>>('/resource/delete/'+params)
 }
+
+export const blossomApi = (): Promise<R<any>> => {
+  return rq.get<R<any>>('/blossom', {})
+}
