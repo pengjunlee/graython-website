@@ -62,6 +62,7 @@
           :click="clickThis"
           :play="playThis"
           :movie="movie"
+          :key="movie.id"
         ></GWFlexMovieCard>
       </template>
       
@@ -157,7 +158,7 @@ const router = useRouter();
 
 const total = ref(0);
 const pageNo = ref(1);
-const pageSize = ref(10);
+const pageSize = ref(2);
 
 const movies = ref<Movie[]>([]);
 

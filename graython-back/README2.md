@@ -51,3 +51,8 @@ java -jar ./backend-blossom.jar --server.port=9999 --spring.datasource.url="jdbc
 4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
 5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
 6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+
+
+
+
+java -jar ./backend-blossom.jar --server.port=9999 --spring.datasource.url="jdbc:mysql://192.168.192.66:3306/test_blossom?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&allowMultiQueries=true&useSSL=false&&serverTimezone=GMT%2B8" --spring.datasource.username=root --spring.datasource.password=Root@123456 --project.iaas.blos.default-path=/Users/pengjunlee/Downloads/imgs &
