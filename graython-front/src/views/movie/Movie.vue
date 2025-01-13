@@ -158,7 +158,7 @@ const router = useRouter();
 
 const total = ref(0);
 const pageNo = ref(1);
-const pageSize = ref(2);
+const pageSize = ref(8);
 
 const movies = ref<Movie[]>([]);
 
