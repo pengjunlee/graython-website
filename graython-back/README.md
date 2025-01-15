@@ -38,7 +38,7 @@ java -jar ./backend-blossom.jar --server.port=9999 --spring.datasource.url="jdbc
 完整启动命令示例：
 
 ```bash
-java -jar ./backend-blossom.jar --server.port=9999 --spring.datasource.url="jdbc:mysql://192.168.192.66:3306/test_blossom?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&allowMultiQueries=true&useSSL=false&&serverTimezone=GMT%2B8" --spring.datasource.username=root --spring.datasource.password=Root@123456 --project.iaas.blos.default-path=/Users/pengjunlee/Documents/imgs &
+java -jar ./backend-blossom.jar --server.port=9999 --spring.datasource.url="jdbc:mysql://192.168.192.66:3306/blossom?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&allowMultiQueries=true&useSSL=false&&serverTimezone=GMT%2B8" --spring.datasource.username=root --spring.datasource.password=Root@123456 --project.iaas.blos.default-path=/Users/pengjunlee/Documents/imgs &
 ```
 若窗口打印出如下信息，则表示启动成功了，此时可以访问 Blossom 管理后台看一下。访问地址 `http://[你的服务器IP]:9999/editor/#/settingindex`，默认用户名/密码: blos/blos 。
 
@@ -154,3 +154,6 @@ java -jar ./graython-website.jar &
 ```sql
 update base_user_param set param_value = '你的网站名称' where param_name = 'WEB_LOGO_NAME';
 ```
+
+
+nohup java -jar ./backend-blossom.jar --server.port=9999 --spring.datasource.url="jdbc:mysql://localhost:3306/blossom?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&allowMultiQueries=true&useSSL=false&&serverTimezone=GMT%2B8" --spring.datasource.username=root --spring.datasource.password=Root@123456 --project.iaas.blos.default-path=/mnt/green/blossom/img &

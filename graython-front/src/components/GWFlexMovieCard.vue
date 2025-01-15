@@ -10,6 +10,7 @@
         />
         <div class="overlay" :style="{ display: showSeries ? 'flex' : 'none' }">
           <el-tooltip
+            v-if="showTooltip"
             class="item"
             effect="dark"
             :content="item.title"
@@ -25,6 +26,15 @@
               {{ item.chapter }}
             </div>
           </el-tooltip>
+          <div
+            v-else
+            v-for="(item, key) in seriesData"
+            class="overlay-item"
+            :onclick="choosePlay"
+            :fileName="item.value"
+          >
+            {{ item.chapter }}
+          </div>
         </div>
       </div>
       <div class="gw-flex-info">
@@ -51,10 +61,10 @@
 </template>
 
 <script setup lang="ts">
-import type { Movie } from "@/types/gw.resources";
-import { getWebsiteApiBaseUrl } from "@/utils/env";
-import { ref, toRefs, toRaw, computed } from "vue";
-import { PreviewerApi } from "@/components/Previewer/index";
+import type { Movie } from '@/types/gw.resources';
+import { getWebsiteApiBaseUrl } from '@/utils/env';
+import { ref, toRefs, toRaw, computed } from 'vue';
+import { PreviewerApi } from '@/components/Previewer/index';
 interface ItemProps {
   movie: Movie; // 组件对应的数据
   click?: (data: any) => void | Promise<void>;
@@ -66,18 +76,19 @@ const { movie } = toRefs(props);
 const currentVideUrl = ref<string>(movie.value.previewUrl);
 const currentVideName = ref<string>(movie.value.title);
 const showSeries = ref(false);
+const showTooltip = ref(true);
 
 let size = computed(() => {
   if (movie.value.size) {
-    if (movie.value.series == "是") {
-      return " [共" + movie.value.size + "集]";
+    if (movie.value.series == '是') {
+      return ' [共' + movie.value.size + '集]';
     } else {
       let sz = movie.value.size / 1024;
-      if (sz < 1024) return " [" + sz.toFixed(2) + "KB]";
+      if (sz < 1024) return ' [' + sz.toFixed(2) + 'KB]';
       sz = sz / 1024;
-      if (sz < 1024) return " [" + sz.toFixed(2) + "MB]";
+      if (sz < 1024) return ' [' + sz.toFixed(2) + 'MB]';
       sz = sz / 1024;
-      if (sz < 1024) return " [" + sz.toFixed(2) + "GB]";
+      if (sz < 1024) return ' [' + sz.toFixed(2) + 'GB]';
     }
   }
 });
@@ -96,19 +107,25 @@ function toogleSeries() {
 function choosePlay(event: { target: any }) {
   // 获取点击目标
   const target = event.target;
-  currentVideName.value = movie.value.title + "_" + target.innerHTML;
+  currentVideName.value = movie.value.title + '_' + target.innerHTML;
   currentVideUrl.value =
-    movie.value.previewUrl + "/" + target.getAttribute("fileName");
+    movie.value.previewUrl + '/' + target.getAttribute('fileName');
   playThis();
 }
 function playThis() {
-  PreviewerApi.previewVideo(getWebsiteApiBaseUrl() +currentVideUrl.value,currentVideName.value);
+  PreviewerApi.previewVideo(
+    getWebsiteApiBaseUrl() + currentVideUrl.value,
+    currentVideName.value,
+  );
 }
 
 let seriesData = computed(() => {
   if (movie.value.files) {
     return movie.value.files.map((item) => {
-      const [part1, part2] = item.name.split("-");
+      const [part1, part2] = item.name.split('-');
+      if (!part2) {
+        showTooltip.value = false;
+      }
       return { ...item, chapter: part1, title: part2 };
     });
   }
