@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class BlossomClient {
 
-    @Value("${website.blossom.service}")
+    @Value("${website.blossom.service:http://localhost:9999}")
     private String blossomServiceLocation;
 
 

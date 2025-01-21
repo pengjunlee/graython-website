@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
     private final BlossomClient blossomClient;
 
-    @Value("${website.blossom.service}")
+    @Value("${website.blossom.service:http://localhost:9999}")
     private String blossomServiceLocation;
     @SneakyThrows
     @Override

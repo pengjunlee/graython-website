@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 7777
   compression:
     enabled: true
     # 响应内容长度(Content-Length)进行压缩, 默认值为 2048 (2KB,不带单位时默认为字节)
@@ -23,6 +23,8 @@ server:
       prefix: access_log
       suffix: .txt
 spring:
+  profiles:
+    active: prod
   main:
     allow-circular-references: true
   application:

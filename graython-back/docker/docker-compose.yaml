@@ -1,0 +1,33 @@
+services:
+  graython-web:
+    image: graython-website:latest
+    container_name: graython-website
+    volumes:
+      # 【需修改】
+      # 将冒号(:)前的部分改成你运行 docker 的设备的某个路径，不要修改冒号后面的内容。
+      # 如果是windows环境，可以使用/c/mnt/green/blossom/img/来指定磁盘
+      # blossom 上传图片的存储路径，不要修改冒号后面的内容。
+      - /Users/pengjunlee/Documents/img/:/home/bl/
+      # website要管理的资源根路径，不要修改冒号后面的内容。
+      - /Users/pengjunlee/Documents/:/app/data/
+    environment:
+      # Blossom MySQL数据库配置
+      SPRING_DATASOURCE_URL: jdbc:mysql://192.168.192.66:3306/test_blossom?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&allowMultiQueries=true&useSSL=false&&serverTimezone=GMT%2B8
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: Root@123456
+      # Website MySQL数据库配置
+      WEBSITE_DATASOURCE_URL: jdbc:mysql://192.168.192.66:3306/test_website?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&allowMultiQueries=true&useSSL=false&&serverTimezone=GMT%2B8
+      WEBSITE_DATASOURCE_USERNAME: root
+      WEBSITE_DATASOURCE_PASSWORD: Root@123456
+    ports:
+      # Blossom 对外暴露的9999端口（不要更改）
+      - "9999:9999"
+      # Website 对外暴露的7777端口（可以更改）
+      - "7777:7777"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9999/sys/alive"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    restart: always

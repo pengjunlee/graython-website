@@ -12,7 +12,7 @@ import java.io.File;
 public class WebsiteGlobalConfig implements InitializingBean {
 
 
-    @Value("${website.resource.root}")
+    @Value("${website.resource.root:/app/data/}")
     private String websiteResourceRoot;
 
     @Value("${website.aspose.app-id}")

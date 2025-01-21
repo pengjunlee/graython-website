@@ -61,7 +61,7 @@ export const getUserId = () => {
 
 export const getSysName = () => {
   if (isNull(window.blconfig.SYS.NAME)) {
-    return 'Blossom';
+    return 'Graython';
   }
   return window.blconfig.SYS.NAME;
 };

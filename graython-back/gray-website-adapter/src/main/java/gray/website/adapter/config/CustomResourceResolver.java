@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @Slf4j
 @Component
 public class CustomResourceResolver implements ResourceResolver {
-    @Value("${website.resource.limit-size: 1024 }")
+    @Value("${website.resource.limit-size: 99999 }")
     private Long limitSize;
 
     private final AtomicLong totalResponseSize = new AtomicLong(0);
