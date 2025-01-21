@@ -2,7 +2,7 @@
 website:
   resource:
     # 要管理的资源根目录
-    root: /mnt/green/media/
+    root: /app/data/
     # 每日限制流量，单位M
     limit-size: 102400
   aspose:
@@ -21,12 +21,11 @@ bingo:
       name: website
     website:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://192.168.192.66:3306/website?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&allowMultiQueries=true&useSSL=false&&serverTimezone=GMT%2B8
-      username: root
-      password: 'Root@123456'
-      slowInterval: '1'
+      url: ${WEBSITE_DATASOURCE_URL}
+      username: ${WEBSITE_DATASOURCE_USERNAME}
+      password: ${WEBSITE_DATASOURCE_PASSWORD}
     blossom:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://192.168.192.66:3306/blossom?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&allowMultiQueries=true&useSSL=false&&serverTimezone=GMT%2B8
-      username: root
-      password: 'Root@123456'
+      url: ${SPRING_DATASOURCE_URL}
+      username: ${SPRING_DATASOURCE_USERNAME}
+      password: ${SPRING_DATASOURCE_PASSWORD}
