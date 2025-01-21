@@ -198,13 +198,18 @@ public class ResourceUtil {
             }
 
             // 保存图像到文件
-            boolean saved = extractFrameAtTime(videoPath, thumbnailPath, duration.divide(new BigDecimal(2), RoundingMode.UP).floatValue(), 10);
-            if (saved) {
-                grayResource.setThumbnail(YesNoEnum.YES);
-                return true;
-            } else {
-                log.error("缩略图保存失败");
+            try {
+                boolean saved = extractFrameAtTime(videoPath, thumbnailPath, duration.divide(new BigDecimal(2), RoundingMode.UP).floatValue(), 10);
+                if (saved) {
+                    grayResource.setThumbnail(YesNoEnum.YES);
+                    return true;
+                } else {
+                    log.error("缩略图保存失败");
+                }
+            }catch (Exception e){
+                log.error("ffmpeg提取视频帧异常");
             }
+
 
         } catch (Exception e) {
             log.error(ExceptionUtil.getMessage(e));
