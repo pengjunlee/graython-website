@@ -1,5 +1,5 @@
 server:
-  port: 7777
+  port: 8081
   compression:
     enabled: true
     # 响应内容长度(Content-Length)进行压缩, 默认值为 2048 (2KB,不带单位时默认为字节)
@@ -24,7 +24,7 @@ server:
       suffix: .txt
 spring:
   profiles:
-    active: prod
+    active: docker
   main:
     allow-circular-references: true
   application:

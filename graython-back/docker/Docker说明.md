@@ -16,8 +16,8 @@ COPY graython-website.jar /app/website/website.jar
 # 将supervisor配置复制到镜像内
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# blossom暴露9999端口，website暴露7777端口
-EXPOSE 9999 7777
+# blossom暴露9999端口，website暴露8081端口
+EXPOSE 9999 8081
 
 # 通过supervisor启动进行
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
@@ -60,10 +60,10 @@ services:
       WEBSITE_DATASOURCE_USERNAME: root
       WEBSITE_DATASOURCE_PASSWORD: Root@123456
     ports:
-      # Blossom 对外暴露的9999端口（不要更改）
+      # Blossom 对外暴露的9999端口，不要修改冒号后面的内容。
       - "9999:9999"
-      # Website 对外暴露的7777端口,不要修改冒号后面的内容。
-      - "7777:7777"
+      # Website 对外暴露的8081端口,不要修改冒号后面的内容。
+      - "8081:8081"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9999/sys/alive"]
       interval: 30s
@@ -110,7 +110,7 @@ services:
 
     ports:
       - "9999:9999"
-      - "7777:7777"
+      - "8081:8081"
     networks:
       - graython-net
     healthcheck:
@@ -159,7 +159,8 @@ docker-compose -f docker-compose.yaml up -d
 ```
 
 # 访问地址
-- http://localhost:7777/website/
-- http://localhost:7777/website/#/Collection
-- http://localhost:7777/station/
+- http://localhost:8081/website/
+- http://localhost:8081/website/#/Collection
+- http://localhost:8081/station/
 - http://localhost:9999/editor/#/settingindex
+- http://localhost:9999/blog/

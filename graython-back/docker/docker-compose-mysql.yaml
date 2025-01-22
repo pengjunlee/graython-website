@@ -10,9 +10,9 @@ services:
       # 将冒号(:)前的部分改成你运行 docker 的设备的某个路径，不要修改冒号后面的内容。
       # 如果是windows环境，可以使用/c/mnt/green/blossom/img/来指定磁盘
       # blossom 上传图片的存储路径，不要修改冒号后面的内容。
-      - /Users/pengjunlee/Documents/img/:/home/bl/
+      - /Users/pengjunlee/Downloads/img/:/home/bl/
       # website要管理的资源根路径，不要修改冒号后面的内容。
-      - /Users/pengjunlee/Documents/:/app/data/
+      - /Users/pengjunlee/Downloads/:/app/data/
     environment:
       # Blossom MySQL数据库配置
       SPRING_DATASOURCE_URL: jdbc:mysql://graython-mysql:3306/blossom?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&allowMultiQueries=true&useSSL=false&&serverTimezone=GMT%2B8
@@ -25,8 +25,8 @@ services:
     ports:
       # Blossom 对外暴露的9999端口（不要更改）
       - "9999:9999"
-      # Website 对外暴露的7777端口,不要修改冒号后面的内容。
-      - "7777:7777"
+      # Website 对外暴露的8081端口,不要修改冒号后面的内容。
+      - "7777:8081"
     networks:
       - graython-net
     healthcheck:
@@ -47,9 +47,9 @@ services:
       # 由于需要创建两个数据库，使用初始化脚本处理
       - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
       # 【需修改】将冒号(:)前的部分改成你运行 docker 的设备的某个路径，不要修改冒号后面的内容。
-      - /Users/pengjunlee/Documents/mysql/data:/var/lib/mysql
-      - /Users/pengjunlee/Documents/mysql/log:/var/log/mysql
-      - /Users/pengjunlee/Documents/mysql/mysql-files/log:/var/lib/mysql-files
+      - /Users/pengjunlee/Downloads/mysql/data:/var/lib/mysql
+      - /Users/pengjunlee/Downloads/mysql/log:/var/log/mysql
+      - /Users/pengjunlee/Downloads/mysql/mysql-files/log:/var/lib/mysql-files
     environment:
       # 数据库密码，与下面健康检测脚本保持一致
       MYSQL_ROOT_PASSWORD: 123456

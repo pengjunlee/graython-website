@@ -4,7 +4,9 @@ window.blconfig = {
    */
   SYS: {
     // 修改该值可以改变网页左上角名称, 你可以改为你的名称
-    NAME: 'Graython',
+    NAME: process.env.WEB_NAME,
+    // Blossom访问地址
+    BL_URL: process.env.BL_URL,
     // 公网安备号
     GONG_WANG_AN_BEI: '',
     // ICP 备案号

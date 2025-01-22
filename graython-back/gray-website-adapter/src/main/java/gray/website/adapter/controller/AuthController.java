@@ -34,15 +34,4 @@ public class AuthController {
     public R<AccessToken> check() {
         return R.ok(userService.check());
     }
-
-    /**
-     * Blossom服务地址
-     *
-     * @return
-     */
-    @GetMapping("/blossom")
-    @Anonymous
-    public R<String> blossom() {
-        return R.ok(userService.blossom());
-    }
 }

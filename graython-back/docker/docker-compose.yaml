@@ -22,8 +22,8 @@ services:
     ports:
       # Blossom 对外暴露的9999端口（不要更改）
       - "9999:9999"
-      # Website 对外暴露的7777端口（可以更改）
-      - "7777:7777"
+      # Website 对外暴露的8081端口（可以更改）
+      - "7777:8081"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9999/sys/alive"]
       interval: 30s

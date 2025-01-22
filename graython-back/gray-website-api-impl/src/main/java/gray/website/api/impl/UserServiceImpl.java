@@ -39,8 +39,6 @@ public class UserServiceImpl implements UserService {
 
     private final BlossomClient blossomClient;
 
-    @Value("${website.blossom.service:http://localhost:9999}")
-    private String blossomServiceLocation;
     @SneakyThrows
     @Override
     public User login(String name, String password) {
@@ -98,10 +96,5 @@ public class UserServiceImpl implements UserService {
     @Override
     public AccessToken check() {
         return blossomClient.checkLoginStatus();
-    }
-
-    @Override
-    public String blossom() {
-        return blossomServiceLocation;
     }
 }

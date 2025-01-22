@@ -23,9 +23,6 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class BlossomClient {
 
-    @Value("${website.blossom.service:http://localhost:9999}")
-    private String blossomServiceLocation;
-
 
     public AccessToken checkLoginStatus() {
         String token = RequestUtil.getHeaderValue(WebsiteConst.AUTHORIZATION);
@@ -39,7 +36,7 @@ public class BlossomClient {
             }
         };
         try {
-            String tokenStr = JdkHttpUtil.doGet(blossomServiceLocation + "/check", headers);
+            String tokenStr = JdkHttpUtil.doGet("http://localhost:9999/check", headers);
             // 创建 ObjectMapper 实例
             ObjectMapper objectMapper = new ObjectMapper();
 

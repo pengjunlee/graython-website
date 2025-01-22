@@ -1,10 +1,9 @@
-import { isNull } from '@/utils/obj';
+import { isNull, isNotBlank } from '@/utils/obj';
+
 // import { blossomApi } from '@/api/resources';
 
-const viteBaseUrl = import.meta.env.WEBSITE_API_BASE_URI;
 const print = () => {
   console.log('Graython-Website ===> 环境:', import.meta.env.MODE);
-  console.log('Graython-Website ===> viteBaseUrl:', viteBaseUrl);
   console.log(window.blconfig);
 };
 
@@ -12,7 +11,7 @@ print();
 
 export const getBlossomApiBaseUrl = () => {
   if (isSpring()) {
-    return "http://"+window.location.hostname+":9999/";
+    return 'http://' + window.location.hostname + ':9999/';
   }
 
   // const { protocol, hostname, port } = window.location;
@@ -20,8 +19,7 @@ export const getBlossomApiBaseUrl = () => {
     return window.blconfig.ENV.BLOSSOM_API_BASE_URI;
   } else if (window.location.hostname === '192.168.31.66') {
     return 'http://192.168.31.66:9999/';
-  }
-  {
+  } else {
     return 'http://192.168.192.66:9999/';
   }
 };
