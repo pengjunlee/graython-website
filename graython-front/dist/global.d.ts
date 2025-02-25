@@ -12,7 +12,6 @@ declare global {
     blconfig: {
       SYS: {
         NAME: string
-        BL_URL: string
         LOGO: string
         GONG_WANG_AN_BEI: string
         ICP_BEI_AN_HAO: string
