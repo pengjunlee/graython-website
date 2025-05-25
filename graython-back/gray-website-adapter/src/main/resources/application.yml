@@ -24,7 +24,7 @@ server:
       suffix: .txt
 spring:
   profiles:
-    active: docker
+    active: dev
   main:
     allow-circular-references: true
   application:
@@ -56,4 +56,3 @@ spring:
 mybatis-plus:
   mapper-locations: classpath:mappers/*.xml
   type-aliases-package: gray.website.common.entity
-  type-enums-package: gray.website.common.enums

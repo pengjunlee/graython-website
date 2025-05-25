@@ -155,5 +155,19 @@ java -jar ./graython-website.jar &
 update base_user_param set param_value = '你的网站名称' where param_name = 'WEB_LOGO_NAME';
 ```
 
+java -jar backend-blossom.jar --server.port=9999 --spring.datasource.url="jdbc:mysql://192.168.31.77:3306/blossom?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&allowMultiQueries=true&useSSL=false&&serverTimezone=GMT%2B8" --spring.datasource.username=root --spring.datasource.password=Root@123456 --project.iaas.blos.default-path=/Users/pengjunlee/Documents/imgs
 
 nohup java -jar ./backend-blossom.jar --server.port=9999 --spring.datasource.url="jdbc:mysql://localhost:3306/blossom?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&allowMultiQueries=true&useSSL=false&&serverTimezone=GMT%2B8" --spring.datasource.username=root --spring.datasource.password=Root@123456 --project.iaas.blos.default-path=/mnt/green/blossom/img &
+
+
+
+#!/dash
+# 重启 blossom
+pid=`ps aux | grep backend-blossom.jar | grep -v grep | awk '{print $2}'`
+echo "进程ID : " $pid
+kill -9 $pid
+echo "进程" $pid "已被杀死"
+echo "开始重启 backend-blossom 服务器"
+# 注意修改相关参数，与上方介绍的相同
+nohup java -jar ./backend-blossom.jar --server.port=9999 --spring.datasource.url="jdbc:mysql://localhost:3306/blossom?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&allowMultiQueries=true&useSSL=false&&serverTimezone=GMT%2B8" --spring.datasource.username=root --spring.datasource.password=Root@123456 --project.iaas.blos.default-path=/mnt/green/blossom/img &
+echo "backend-blossom 正在启动,请查看日志 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓"
